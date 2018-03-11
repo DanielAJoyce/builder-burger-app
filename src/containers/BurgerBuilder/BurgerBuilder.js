@@ -4,6 +4,9 @@ import Aux from '../../hoc/Aux';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
+
 const INGREDIENT_PRICES = {
   salad: 0.5,
   cheese: 0.4,
@@ -28,8 +31,6 @@ class BurgerBuilder extends Component{
     purchasable: false
   }
   updatePurchaseState(ingredients){
-   
-
     //converts to array and gets values of each ingredient
     const sum = Object.keys(ingredients)
       .map(igKey =>{
@@ -84,6 +85,9 @@ class BurgerBuilder extends Component{
     }
     return(
       <Aux>
+        <Modal>
+          <OrderSummary ingredients={this.state.ingredients}/>
+        </Modal>
         <Burger ingredients={this.state.ingredients}/>
         <BuildControls 
           purchasable={this.state.purchasable}
